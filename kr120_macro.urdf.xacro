@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 #replace package://kuka_kr20_support/meshes/kr20_2/visual/base_link.dae with package://kr120/visual/xxxx.dae
 #replace package://kuka_kr20_support/meshes/kr20_2/collision/base_link.dae with package://kr120/collision/xxxx.stl
-  <xacro:macro name="kuka_kr120_2700" params="prefix">
+  <xacro:macro name="kuka_kr120_r2700" params="prefix">
     <!-- LINKS -->
     <!-- base link -->
     <link name="${prefix}base_link">
