@@ -1,0 +1,1 @@
+urdf file kr120_macro and kr120_xacro. the xacro file should call back the macro. The launch file should call the xacro.
