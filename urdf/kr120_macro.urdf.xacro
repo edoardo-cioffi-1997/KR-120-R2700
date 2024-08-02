@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-#replace package://kuka_kr20_support/meshes/kr20_2/visual/base_link.dae with package://kr120/visual/xxxx.dae
-#replace package://kuka_kr20_support/meshes/kr20_2/collision/base_link.dae with package://kr120/collision/xxxx.stl
+
   <xacro:macro name="kuka_kr120_r2700" params="prefix">
     <!-- LINKS -->
     <!-- base link -->
@@ -10,13 +9,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr20_support/meshes/kr20_2/visual/base_link.dae" />
+          <mesh filename="package://kr120/visual/base.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr20_support/meshes/kr20_2/collision/base_link.stl" />
+          <mesh filename="package://kr120/collision/base.stl" />
         </geometry>
       </collision>
     </link>
@@ -30,13 +29,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr20_support/meshes/kr20_2/visual/link_1.dae" />
+          <mesh filename="package://kr120/visual/asse1.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr20_support/meshes/kr20_2/collision/link_1.stl" />
+          <mesh filename="package://kr120/collision/asse1.stl" />
         </geometry>
       </collision>
     </link>
@@ -50,13 +49,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/visual/link_2.dae"/>
+          <mesh filename="package://kr120/visual/asse2.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/collision/link_2.stl" />
+          <mesh filename="package://kr120/collision/asse2.stl" />
         </geometry>
       </collision>
     </link>
@@ -70,13 +69,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/visual/link_3.dae" />
+          <mesh filename="package://kr120/visual/asse3.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/collision/link_3.stl" />
+          <mesh filename="package://kr120/collision/asse3.stl" />
         </geometry>
       </collision>
     </link>
@@ -90,13 +89,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/visual/link_4.dae" />
+          <mesh filename="package://kr120/visual/asse4.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/collision/link_4.stl" />
+          <mesh filename="package://kr120/collision/asse4.stl" />
         </geometry>
       </collision>
     </link>
@@ -110,13 +109,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/visual/link_5.dae" />
+          <mesh filename="package://kr120/visual/asse5.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/collision/link_5.stl" />
+          <mesh filename="package://kr120/collision/asse5.stl" />
         </geometry>
       </collision>
     </link>
@@ -130,13 +129,13 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/visual/link_6.dae" />
+          <mesh filename="package://kr120/visual/end-effector.dae" />
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr16_support/meshes/kr16_2/collision/link_6.stl" />
+          <mesh filename="package://kr120/collision/end-effector.stl" />
         </geometry>
       </collision>
     </link>
