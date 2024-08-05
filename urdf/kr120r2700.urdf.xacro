@@ -1,9 +1,7 @@
 <?xml version = "1.0"?>
-<robot name="cobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="kr120r2700" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="$(find kr120)/urdf/macro.xacro"/>
-
-    <!-- <xacro:include filename="$(find cobot_simulation)/urdf/gripper.xacro"/> -->
 
     <!-- Fix the cobot to the world-->
     <link name="world"/>
@@ -94,7 +92,7 @@
     <!-- Gazebo plugin-->
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/MainRobot</robotNamespace>
+            <robotNamespace>/kr120r2700</robotNamespace>
         </plugin>
     </gazebo>
 
