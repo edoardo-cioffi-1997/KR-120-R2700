@@ -1,0 +1,102 @@
+<?xml version = "1.0"?>
+<robot name="cobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find kr120)/urdf/macro.xacro"/>
+
+    <!-- <xacro:include filename="$(find cobot_simulation)/urdf/gripper.xacro"/> -->
+
+    <!-- Fix the cobot to the world-->
+    <link name="world"/>
+        
+    <joint name="fixed" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+
+    <xacro:kuka_kr120_r2700 name="base_link" origin_xyz="0.0 0.0 0.0" origin_rpy= "0 0 0"  
+                            mass="1" ixx="0.01625" ixy="0" ixz="0" iyy="0.01625" iyz="0" izz="0.005" file_dae="package://kr120/visual/base.dae" file_stl="package://kr120/collision/base.stl"/>
+
+    <xacro:kuka_kr120_r2700 name="link1" origin_xyz="0.0 0.0 0.0" origin_rpy= "0 0 0"  
+                            mass="1.5" ixx="0.054147" ixy="0" ixz="0" iyy="0.054147" iyz="0" izz="0.001875" file_dae="package://kr120/visual/asse1.dae" file_stl="package://kr120/collision/asse1.stl"/>
+
+    
+    <xacro:kuka_kr120_r2700_joint name="base_link__link1" type="revolute" parent="base_link" child="link1" 
+                            axis="0 0 1" limit_l="-3.14" limit_u="3.14" limit_v="0.5" limit_e="1000" 
+                            origin_xyz="0 0 0.05" origin_rpy="0 0 0" />
+    
+    <xacro:kuka_kr120_r2700 name="link2" origin_xyz="0.0 0.0 0.425" origin_rpy= "0 0 0" 
+                            mass="2" ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816" file_dae="package://kr120/visual/asse2.dae" file_stl="package://kr120/collision/asse2.stl"/>
+
+    <xacro:kuka_kr120_r2700_joint name="link1__link2" type="revolute" parent="link1" child="link2" 
+                            axis="0 1 0" limit_l="-2.5" limit_u="2.5" limit_v="0.5" limit_e="1000" 
+                            origin_xyz="0 0.1 0.214" origin_rpy="0 0 0" />
+
+
+    <xacro:kuka_kr120_r2700 name="link3" origin_xyz="0.0 0.0 0.340" origin_rpy= "0 0 0" 
+                            mass="2" ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816" file_dae="package://kr120/visual/asse3.dae" file_stl="package://kr120/collision/asse3.stl"/>
+
+    <xacro:kuka_kr120_r2700_joint name="link2__link3" type="revolute" parent="link2" child="link3" 
+                            axis="0 1 0" limit_l="-3.14" limit_u="3.14" limit_v="0.5" limit_e="1000" 
+                            origin_xyz="0 -0.1 0.8" origin_rpy="0 0 0" />
+
+    
+
+    <xacro:kuka_kr120_r2700 name="link4" origin_xyz="0.0 0.0 0.065" origin_rpy= "0 0 0" 
+                            mass="1" ixx="0.00565" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.00565" file_dae="package://kr120/visual/asse4.dae" file_stl="package://kr120/collision/asse4.stl"/>
+
+    <xacro:kuka_kr120_r2700_joint name="link3__link4" type="revolute" parent="link3" child="link4" 
+                            axis="0 1 0" limit_l="-3.14" limit_u="3.14" limit_v="0.5" limit_e="1000" 
+                            origin_xyz="0 0.1 0.630" origin_rpy="0 0 0" />
+    
+
+    <xacro:kuka_kr120_r2700 name="link5" origin_xyz="0.0 0.0 0.035" origin_rpy= "0 0 0" 
+                            mass="2" ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816" file_dae="package://kr120/visual/asse5.dae" file_stl="package://kr120/collision/asse5.stl"/>
+    
+    <xacro:kuka_kr120_r2700_joint name="link4__link5" type="revolute" parent="link4" child="link5" 
+                            axis="1 0 0" limit_l="-3.14" limit_u="3.14" limit_v="0.5" limit_e="1000" 
+                            origin_xyz="0 0.0 0.180" origin_rpy="0 1.57 0" />
+
+    
+    <!-- Build the TCP or end effector-->
+    <xacro:kuka_kr120_r2700 name="flange" origin_xyz="0.0 0.0 0.0" origin_rpy="0 0 0" mass="1"  ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816"
+                                        file_dae="package://kr120/visual/end-effector.dae" file_stl="package://kr120/collision/end-effector.stl" />
+   <xacro:kuka_kr120_r2700_joint name="link5_flange" type="prismatic" parent="link5" child="flange" 
+                            axis="1 0 0" limit_l="0" limit_u="0" limit_v="0.5" limit_e="1000"
+                            origin_xyz="0 0.0 0.0" origin_rpy="0 0 0" />
+    <!-- put transmission in each joint-->
+
+    <xacro:transmission name="trans_base_link__link1" 
+                        joint_name="base_link__link1" 
+                        actuator_name="motor_base_link__link1" />
+    
+    <xacro:transmission name="trans_link1__link2" 
+                        joint_name="link1__link2" 
+                        actuator_name="motor_link1__link2" />
+
+    <xacro:transmission name="trans_link2__link3" 
+                        joint_name="link2__link3" 
+                        actuator_name="motor_link2__link3" />
+    
+
+    <xacro:transmission name="trans_link3__link4" 
+                        joint_name="link3__link4" 
+                        actuator_name="motor_link3__link4" />
+    
+    
+
+    <xacro:transmission name="trans_link4__link5" 
+                        joint_name="link4__link5" 
+                        actuator_name="motor_link4__link5" />
+
+     <xacro:transmission name="trans_link5__flange" 
+                        joint_name="link5__flange" 
+                        actuator_name="motor_link5__flange" />
+    <!-- Gazebo plugin-->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/cobot</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    
+</robot>
