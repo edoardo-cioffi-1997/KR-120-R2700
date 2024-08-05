@@ -60,7 +60,7 @@
     <!-- Build the TCP or end effector-->
     <xacro:kuka_kr120_r2700 name="flange" origin_xyz="0.0 0.0 0.0" origin_rpy="0 0 0" mass="1"  ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816"
                                         file_dae="package://kr120/visual/end-effector.dae" file_stl="package://kr120/collision/end-effector.stl" />
-   <xacro:kuka_kr120_r2700_joint name="link5_flange" type="prismatic" parent="link5" child="flange" 
+   <xacro:kuka_kr120_r2700_joint name="link5__flange" type="fixed" parent="link5" child="flange" 
                             axis="1 0 0" limit_l="0" limit_u="0" limit_v="0.5" limit_e="1000"
                             origin_xyz="0 0.0 0.0" origin_rpy="0 0 0" />
     <!-- put transmission in each joint-->
