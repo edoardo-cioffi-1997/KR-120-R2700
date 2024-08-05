@@ -17,7 +17,7 @@
             </visual>
             <collision>
                 <geometry>
-                    <mesh filename="${file_stl}/>
+                    <mesh filename="${file_stl}"/>
                 </geometry>
                 <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
             </collision>
