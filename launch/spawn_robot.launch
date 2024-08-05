@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find kr120)/urdf/kr120.urdf"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find kr120)/urdf/kr120_xacro.xacro"/>
     
     <!--initial position-->
     <arg name="x" default="0" />
