@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find kr120)/urdf/kr120r2700.urdf.xacro"/>
+    
+    <!--initial position-->
+    <arg name="x" default="0" />
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+
+    <!--launch gazebo-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="use_sim_time" value="true"/>
+        <arg name="debug" value="false"/>
+        <arg name="gui" value="true" />
+        <arg name="paused" value="true"/>
+    </include>
+
+    <!--spawn the robot-->
+    <node name="spawn_the_robot" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model kr120r2700 -x $(arg x) -y $(arg y) -z $(arg z)"/>
+    
+    <!-- load controllers-->
+    <rosparam command="load" file="$(find kr120)/config/joint_controllers.yaml" />
+    <rosparam command="load" file="$(find kr120)/config/robot_joint_states.yaml" />
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" respawn="false" ns="/kr120r1810" 
+        args="joint_state_controller 
+        joint1_position_controller 
+        joint2_position_controller 
+        joint3_position_controller 
+        joint4_position_controller 
+        joint5_position_controller 
+        joint6_position_controller 
+        --timeout 60" />
+    
+    <!-- Convert joint states to TF transform for rviz and rqt-->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" respawn="false"/>
+    <remap from="/joint_states" to="/kr120r1810/joint_states"/> 
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <remap from="/joint_states" to="/kr120r1810/joint_states"/> 
+
+    <node name="rqt_reconfigure" pkg="rqt_gui" type="rqt_gui" />
+    
+</launch>
