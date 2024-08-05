@@ -17,7 +17,6 @@
     <xacro:kuka_kr120_r2700 name="link1" origin_xyz="0.0 0.0 0.0" origin_rpy= "0 0 0"  
                             mass="1.5" ixx="0.054147" ixy="0" ixz="0" iyy="0.054147" iyz="0" izz="0.001875" file_dae="package://kr120/visual/asse1.dae" file_stl="package://kr120/collision/asse1.stl"/>
 
-    
     <xacro:kuka_kr120_r2700_joint name="base_link__link1" type="revolute" parent="base_link" child="link1" 
                             axis="0 0 1" limit_l="-3.14" limit_u="3.14" limit_v="0.5" limit_e="1000" 
                             origin_xyz="0 0 0.05" origin_rpy="0 0 0" />
@@ -29,15 +28,12 @@
                             axis="0 1 0" limit_l="-2.5" limit_u="2.5" limit_v="0.5" limit_e="1000" 
                             origin_xyz="0 0.1 0.214" origin_rpy="0 0 0" />
 
-
     <xacro:kuka_kr120_r2700 name="link3" origin_xyz="0.0 0.0 0.340" origin_rpy= "0 0 0" 
                             mass="2" ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816" file_dae="package://kr120/visual/asse3.dae" file_stl="package://kr120/collision/asse3.stl"/>
 
     <xacro:kuka_kr120_r2700_joint name="link2__link3" type="revolute" parent="link2" child="link3" 
                             axis="0 1 0" limit_l="-3.14" limit_u="3.14" limit_v="0.5" limit_e="1000" 
                             origin_xyz="0 -0.1 0.8" origin_rpy="0 0 0" />
-
-    
 
     <xacro:kuka_kr120_r2700 name="link4" origin_xyz="0.0 0.0 0.065" origin_rpy= "0 0 0" 
                             mass="1" ixx="0.00565" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.00565" file_dae="package://kr120/visual/asse4.dae" file_stl="package://kr120/collision/asse4.stl"/>
@@ -74,13 +70,10 @@
     <xacro:transmission name="trans_link2__link3" 
                         joint_name="link2__link3" 
                         actuator_name="motor_link2__link3" />
-    
 
     <xacro:transmission name="trans_link3__link4" 
                         joint_name="link3__link4" 
                         actuator_name="motor_link3__link4" />
-    
-    
 
     <xacro:transmission name="trans_link4__link5" 
                         joint_name="link4__link5" 
