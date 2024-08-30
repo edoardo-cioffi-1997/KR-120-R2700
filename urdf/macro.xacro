@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-    <xacro:macro name="kuka_kr120_r2700" params="name origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz file_dae file_stl">
+    <xacro:macro name="kuka_kr120_r2700" params="name origin_xyz origin_rpy mass ixx ixy ixz iyy iyz izz file_dae file_stl scale">
         <link name="${name}">
             <inertial>
                 <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
@@ -11,13 +11,13 @@
             </inertial>
             <visual>
                 <geometry>
-                    <mesh filename="${file_dae}"/>
+                    <mesh filename="${file_dae}" scale="${scale}"/>
                 </geometry>
                 <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
             </visual>
             <collision>
                 <geometry>
-                    <mesh filename="${file_stl}"/>
+                    <mesh filename="${file_stl}" scale="${scale}"/>
                 </geometry>
                 <origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
             </collision>
