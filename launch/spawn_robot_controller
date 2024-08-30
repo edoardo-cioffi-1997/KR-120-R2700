@@ -35,10 +35,10 @@
     
     <!-- Convert joint states to TF transform for rviz and rqt-->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"  output="screen" respawn="false"/>
-    <remap from="/joint_states" to="/kr120r1810/joint_states"/> 
+    <remap from="/joint_states" to="/kr120r2700/joint_states"/> 
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-    <remap from="/joint_states" to="/kr120r1810/joint_states"/> 
+    <remap from="/joint_states" to="/kr120r2700/joint_states"/> 
 
     <node name="rqt_reconfigure" pkg="rqt_gui" type="rqt_gui" />
     
