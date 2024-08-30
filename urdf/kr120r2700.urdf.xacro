@@ -54,7 +54,7 @@
     
     <xacro:kuka_kr120_r2700_joint name="link4__link5" type="revolute" parent="link4" child="link5" 
                             axis="0 1 0" limit_l="-2.18166" limit_u="2.18166" limit_v="3.14159" limit_e="1000" 
-                            origin_xyz="0.89 0 0" origin_rpy="0 0 0" />
+                            origin_xyz="0.853 0 0" origin_rpy="0 0 0" />
 
     <!-- tool 0 ($FLANGE coordinate system in KRC controller)-->
     <link name="tool0"/>
