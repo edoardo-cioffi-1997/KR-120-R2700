@@ -66,6 +66,8 @@
                             axis="1 0 0" limit_l="-6.10865" limit_u="6.10865" limit_v="4.53786" limit_e="1000"
                             origin_xyz="0.215 0 0" origin_rpy="0 0 0" />
 
+   <xacro:pinza parent="flange"/>
+
     <joint name="flange__tool0" type="fixed">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <parent link="flange"/>
@@ -89,8 +91,6 @@
     <xacro:transmission name="trans_link3__link4" 
                         joint_name="link3__link4" 
                         actuator_name="motor_link3__link4" />
-    
-    
 
     <xacro:transmission name="trans_link4__link5" 
                         joint_name="link4__link5" 
