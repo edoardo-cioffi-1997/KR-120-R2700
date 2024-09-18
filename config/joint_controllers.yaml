@@ -32,3 +32,28 @@ kr120r2700:
     type: effort_controller/JointPositionController
     joint: link5__flange
     pid: {p: 700, i: 50, d: 70}
+
+  pinza_connector_controller:
+    type: effort_controllers/JointPositionController
+    joint: pinza_connector_joint
+    pid: {p: 70000, i: 5000, d: 7}
+
+  pinza_left_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: pinza_left_joint
+    pid: {p: 70000, i: 5000, d: 70}
+
+  pinza_right_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: pinza_right_joint
+    pid: {p: 70000, i: 5000, d: 70}
+
+  gyro_right_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: gyro_right_joint
+    pid: {p: 70000, i: 5000, d: 70}
+
+  gyro_left_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: gyro_left_joint
+    pid: {p: 70000, i: 5000, d: 70}
