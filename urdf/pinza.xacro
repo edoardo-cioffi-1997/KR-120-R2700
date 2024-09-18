@@ -6,43 +6,51 @@
     
     <xacro:macro name="pinza" params="parent">
 
-        <xacro:kuka_kr120_r2700 name="pinza_connector" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0" file_dae="package://kr120/visual/slider.dae" file_stl="package://kr120/collision/slider.stl" scale="0.001 0.001 0.001"/>
+        <xacro:kuka_kr120_r2700 name="pinza_connector" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" file_dae="package://kr120/visual/slider.dae" file_stl="package://kr120/collision/slider.stl" scale="0.001 0.001 0.001"/>
     
-        <xacro:kuka_kr120_r2700 name="pinza_left" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0" file_dae="package://kr120/visual/fork2.dae" file_stl="package://kr120/collision/fork2.stl" scale="0.001 0.001 0.001"/>
+        <xacro:kuka_kr120_r2700 name="pinza_left" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" file_dae="package://kr120/visual/fork2.dae" file_stl="package://kr120/collision/fork2.stl" scale="0.001 0.001 0.001"/>
 
-        <xacro:kuka_kr120_r2700 name="pinza_right" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0" file_dae="package://kr120/visual/fork1.dae" file_stl="package://kr120/collision/fork1.stl" scale="0.001 0.001 0.001"/>
+        <xacro:kuka_kr120_r2700 name="pinza_right" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" file_dae="package://kr120/visual/fork1.dae" file_stl="package://kr120/collision/fork1.stl" scale="0.001 0.001 0.001"/>
 
-        <xacro:kuka_kr120_r2700 name="pinza_rotational" origin_xyz="0 0 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0" file_dae="package://kr120/visual/gyro.dae" file_stl="package://kr120/collision/gyro.stl" scale="0.001 0.001 0.001"/>
+        <xacro:kuka_kr120_r2700 name="gyro_left" origin_xyz="0 0.597 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" file_dae="package://kr120/visual/gyro_left.dae" file_stl="package://kr120/collision/gyro_left.stl" scale="0.001 0.001 0.001"/>
+
+        <xacro:kuka_kr120_r2700 name="gyro_right" origin_xyz="0 0.597 0" origin_rpy="0 0 0" mass="1" ixx="0.1" ixy="0" ixz="0" iyy="0.1" iyz="0" izz="0.1" file_dae="package://kr120/visual/gyro_right.dae" file_stl="package://kr120/collision/gyro_right.stl" scale="0.001 0.001 0.001"/>
 
         <xacro:kuka_kr120_r2700_joint name="pinza_connector_joint" type="fixed"
                 parent="${parent}" child="pinza_connector" axis="0 0 1"
                 limit_l="0" limit_u="0" limit_v="0" limit_e="0"
                 origin_xyz="0 0 0" origin_rpy="0 0 1.5708"/>
         
-         <joint name="pinza_left_joint" type="prismatic">
+        <joint name="pinza_left_joint" type="prismatic">
             <parent link="pinza_connector"/>
             <child link="pinza_left"/>
             <axis xyz="1 0 0"/>
-            <limit lower="-0.05" upper="0" velocity="0.5" effort="200"/>
+            <limit lower="-0.00532" upper="0" velocity="0.5" effort="200"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </joint>
 
-         <joint name="pinza_right_joint" type="prismatic">
+        <joint name="pinza_right_joint" type="prismatic">
             <parent link="pinza_connector"/>
             <child link="pinza_right"/>
             <axis xyz="1 0 0"/>
-            <limit lower="0" upper="0.05" velocity="0.5" effort="200"/>
+            <limit lower="0" upper="0.00532" velocity="0.5" effort="200"/>
             <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mimic joint="pinza_left_joint" multiplier="-1.0" offset="0" />
         </joint>
 
-        <xacro:kuka_kr120_r2700_joint name="pinza_rotational_joint" type="revolute"
-                parent="pinza_connector" child="pinza_rotational" axis="1 0 0"
+        <xacro:kuka_kr120_r2700_joint name="gyro_left_joint" type="revolute"
+                parent="pinza_left" child="gyro_left" axis="1 0 0"
                 limit_l="-3.1415" limit_u="3.1415" limit_v="1" limit_e="1000"
-                origin_xyz="0 0 0" origin_rpy="0 0 0"/>
-                    
-        <xacro:transmission name="trans_pinza_connector_joint"
-                            joint_name="pinza_connector_joint"
-                            actuator_name="motor_pinza_connector_joint" />
+                origin_xyz="0 -0.597 0" origin_rpy="0 0 0"/>
+
+        <joint name="gyro_right_joint" type="revolute">
+            <parent link="pinza_right"/>
+            <child link="gyro_right"/>
+            <axis xyz="-1 0 0"/>
+            <limit lower="-3.1415" upper="3.1415" velocity="1" effort="1000"/>
+            <origin xyz="0 -0.597 0" rpy="0 0 0"/>
+            <mimic joint="gyro_left_joint" multiplier="-1.0" offset="0"/>
+        </joint>
 
         <xacro:transmission name="trans_pinza_left_joint"
                             joint_name="pinza_left_joint"
@@ -52,9 +60,13 @@
                             joint_name="pinza_right_joint"
                             actuator_name="motor_pinza_right_joint" />
         
-        <xacro:transmission name="trans_pinza_rotational_joint"
-                            joint_name="pinza_rotational_joint"
-                            actuator_name="motor_pinza_rotational_joint" />
+        <xacro:transmission name="trans_gyro_left_joint"
+                            joint_name="gyro_left_joint"
+                            actuator_name="motor_gyro_left_joint" />
+
+        <xacro:transmission name="trans_gyro_right_joint"
+                            joint_name="gyro_right_joint"
+                            actuator_name="motor_gyro_right_joint" />
 
         <xacro:macro name="mimic_joint_plugin_gazebo" params="parent_joint mimic_joint has_pid:=false multiplier:=-1.0 offset:=0 sensitiveness:=0.0 max_effort:=200 robot_namespace:='/kr120r2700'">
                 <gazebo>
@@ -74,18 +86,21 @@
                     </plugin>
                 </gazebo>
         </xacro:macro>
-        
+
         <xacro:mimic_joint_plugin_gazebo  parent_joint="pinza_right_joint" mimic_joint="pinza_left_joint" 
                                                 has_pid="false" multiplier="-1.0" max_effort="200" />
+
+        <xacro:mimic_joint_plugin_gazebo parent_joint="gyro_right_joint" mimic_joint="gyro_left_joint"
+                                                has_pid="false" multiplier="-1.0" max_effort="200" /> 
         
         <gazebo>
                 <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
                     <arm>
                         <arm_name>pinza</arm_name>
-                        <palm_link>pinza_connector</palm_link>
-                        <gripper_link> pinza_right </gripper_link>
-                        <gripper_link> pinza_left </gripper_link>
-                        <gripper_link> pinza_rotational </gripper_link>
+                        <palm_link>pinza_right</palm_link>
+                        <palm_link>pinza_left</palm_link>
+                        <gripper_link>gyro_left </gripper_link>
+                        <gripper_link>gyro_right</gripper_link>
                     </arm>
                     <forces_angle_tolerance>100</forces_angle_tolerance>
                     <update_rate>10</update_rate>
