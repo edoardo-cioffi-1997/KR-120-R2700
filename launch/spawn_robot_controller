@@ -2,11 +2,19 @@
 <launch>
 
     <param name="robot_description" command="$(find xacro)/xacro --inorder $(find kr120)/urdf/kr120r2700.urdf.xacro"/>
-    
+    <param name="tray" command="$(find xacro)/xacro --inorder $(find kr120)/urdf/tray.urdf.xacro"/>
+    <param name="table" command="$(find xacro)/xacro --inorder $(find kr120)/urdf/table.urdf.xacro"/>
+
     <!--initial position-->
     <arg name="x" default="0" />
     <arg name="y" default="0"/>
     <arg name="z" default="0"/>
+    <arg name="x_tray" default="0"/>
+    <arg name="y_tray" default="0"/>
+    <arg name="z_tray" default="0"/>
+    <arg name="x_table" default="0"/>
+    <arg name="y_table" default="0"/>
+    <arg name="z_table" default="0"/>
 
     <!--launch gazebo-->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -18,7 +26,9 @@
 
     <!--spawn the robot-->
     <node name="spawn_the_robot" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model kr120r2700 -x $(arg x) -y $(arg y) -z $(arg z)"/>
-    
+    <node name="spawn_the_tray" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param tray -model tray -x $(arg x_tray) -y $(arg y_tray) -z $(arg z_tray)" />
+
+    <node name="spawn_the_table" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param table -model table -x $(arg x_table) -y $(arg y_table) -z $(arg z_table)" />
     <!-- load controllers-->
     <rosparam command="load" file="$(find kr120)/config/joint_controllers.yaml" />
     <rosparam command="load" file="$(find kr120)/config/robot_joint_states.yaml" />
