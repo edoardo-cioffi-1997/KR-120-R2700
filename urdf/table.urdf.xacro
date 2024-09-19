@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot name="table" xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <link name="world"/>
+
+    <link name="table">
+      <inertial>
+        <origin xyz="0.7 0 0" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0.7 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="1 0.8 1"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.7 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="1 0.8 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="joint" type="fixed">
+        <origin rpy="0 0 0" xyz="1 0 0"/>
+        <parent link="world"/>
+        <child link="table"/>
+    </joint>
+
+
+    <gazebo reference="my_box" >
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+</robot>
