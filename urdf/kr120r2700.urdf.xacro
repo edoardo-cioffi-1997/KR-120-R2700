@@ -2,6 +2,7 @@
 <robot name="kr120r2700" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="$(find kr120)/urdf/macro.xacro"/>
+    <xacro:include filename="$(find kr120)/urdf/pinza.xacro"/>
 
     
 
