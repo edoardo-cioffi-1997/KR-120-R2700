@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot name="tray" xmlns:xacro="http://wiki.ros.org/xacro">
+
+     <link name="tray">
+      <inertial>
+        <origin xyz="1.5 0 0.3" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="1.5 0 0.3" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kr120/visual/tray_eps_no_dummy.dae" scale="0.001 0.001 0.001" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="1.5 0 0.3" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kr120/collision/tray_EPS_no_dummy.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    
+</robot>
