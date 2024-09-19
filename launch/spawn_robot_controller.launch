@@ -33,7 +33,7 @@
     <rosparam command="load" file="$(find kr120)/config/joint_controllers.yaml" />
     <rosparam command="load" file="$(find kr120)/config/robot_joint_states.yaml" />
 
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" respawn="false" ns="/kr120r1810" 
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" respawn="false" ns="/kr120r2700" 
         args="joint_state_controller 
         joint1_position_controller 
         joint2_position_controller 
