@@ -29,7 +29,7 @@
                             mass="2" ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816" file_dae="package://kr120/visual/asse2.dae" file_stl="package://kr120/collision/asse2.stl" scale="0.001 0.001 0.001"/>
 
     <xacro:kuka_kr120_r2700_joint name="link1__link2" type="revolute" parent="link1" child="link2" 
-                            axis="0 1 0" limit_l="-2.44346" limit_u="-0.0872665" limit_v="2.00713" limit_e="1000" 
+                            axis="0 1 0" limit_l="-0.872665" limit_u="1.48353" limit_v="2.00713" limit_e="1000" 
                             origin_xyz="0.33 0 0.645" origin_rpy="0 0 0" />
 
 
@@ -37,7 +37,7 @@
                             mass="2" ixx="0.4816" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.4816" file_dae="package://kr120/visual/asse3.dae" file_stl="package://kr120/collision/asse3.stl" scale="0.001 0.001 0.001"/>
 
     <xacro:kuka_kr120_r2700_joint name="link2__link3" type="revolute" parent="link2" child="link3" 
-                            axis="0 1 0" limit_l="-2.0944" limit_u="2.93215" limit_v="2.0944" limit_e="1000" 
+                            axis="0 1 0" limit_l="-3.66519" limit_u="1.27409" limit_v="2.0944" limit_e="1000" 
                             origin_xyz="0 0 1.15" origin_rpy="0 0 0" />
 
     
